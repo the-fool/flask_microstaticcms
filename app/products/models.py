@@ -14,6 +14,7 @@ class Tire(Base):
     def to_json(self):
         json_tire = {
             'name'          : self.name,
+            'id'            : self.id,
             'price'         : self.price,
             'size'          : self.size,
             'status'        : self.status,
