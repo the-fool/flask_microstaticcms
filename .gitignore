@@ -2,7 +2,7 @@ settings*
 passenger*
 migrations/
 tmp/
-*~
+*.py~
 *.pyc
 *.swp
 #*#

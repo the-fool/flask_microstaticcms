@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, Text
 from ..database import Base
 
 class Tire(Base):
@@ -9,12 +9,15 @@ class Tire(Base):
     size = Column(Float)
     image = Column(String(128))
     status = Column(String(32))
+    description = Column(Text)
 
     def to_json(self):
         json_tire = {
-            'name'   : self.name,
-            'price'  : self.price,
-            'size'   : self.size,
-            'status' : self.status
+            'name'          : self.name,
+            'price'         : self.price,
+            'size'          : self.size,
+            'status'        : self.status,
+            'image'         : self.image,
+            'description'   : self.description
             }
         return json_tire
