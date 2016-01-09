@@ -1,4 +1,6 @@
-{% extends 'base_admin.html' %} {% import "bootstrap/wtf.html" as wtf %} {% block title %}MTW - Admin{% endblock %} {% block page_content %} {% block page_header %}
+{% extends 'base_admin.html' %} 
+{% import "bootstrap/wtf.html" as wtf %} 
+{% block title %}MTW - Admin{% endblock %} {% block page_content %} {% block page_header %}
 <div class="page-header">
     <h1>Inventory</h1>
 </div>
@@ -27,7 +29,7 @@
                 <h4 class="modal-title">Add Tire</h4>
             </div>
             <div class="modal-body">
-
+                {{ wtf.quick_form(form)}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>

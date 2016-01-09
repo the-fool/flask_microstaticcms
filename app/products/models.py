@@ -6,7 +6,7 @@ class Tire(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(128))
     price = Column(Float)
-    size = Column(Float)
+    size = Column(String(16))
     image = Column(String(128))
     status = Column(String(32))
     description = Column(Text)

@@ -68,11 +68,6 @@ function initProdTable() {
             $table.data('selections', getIdSelections());
         });
 
-    $add.click(function () {
-        $('#add-tire-modal').modal('show');
-    });
-
-
     function getIdSelections() {
         return $.map($table.bootstrapTable('getSelections'), function (row) {
             return row['id'];

@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask.ext.login import login_required, login_user, logout_user, current_user
 from . import admin
-from .forms import LoginForm
+from .forms import LoginForm, NewTireForm
 from app.models import User
 
 @admin.route('/')
 @login_required
 def cpanel():
-    return render_template('admin.html')
+    form = NewTireForm()
+    return render_template('admin.html', form=form)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
