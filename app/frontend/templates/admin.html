@@ -1,0 +1,82 @@
+{% extends 'base_admin.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}MTW - Admin{% endblock %}
+
+{% block page_content %}
+
+{% block page_header %}
+<div class="page-header">
+  <h1>Inventory</h1>
+</div>
+{% endblock %}
+
+<div class="well">
+  <div id="toolbar">
+    <button id="add-tire"
+            data-toggle="modal" 
+	    data-target="#add-tire-modal"
+            class="btn btn-success">
+      <i class="glyphicon glyphicon-plus"></i>Create New Tire
+    </button>
+
+    <button id="edit-tire" class="btn btn-danger" disabled>
+      <i class="glyphicon glyphicon-remove"></i>Remove Tire
+    </button>
+  </div>
+
+  <table id="table"
+         class="custom-hover"
+         data-toolbar="#toolbar"
+         data-search="true"
+         data-show-refresh="true"
+         data-show-toggle="true"
+         data-show-columns="true"
+         data-locale="en-US">
+  </table>
+</div>
+
+<div id="add-tire-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Tire</h4>
+      </div>
+      <div class="modal-body">
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="edit-tire-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title">Edit Tire</h4>
+      </div>
+      <div class="modal-body">
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="{{ url_for('static', filename='js/lib/bootstrap-table-editable.js')}}"></script>
+<script src="{{ url_for('static', filename='js/cpanel.js')}}"></script>
+{% endblock %}
+
+
