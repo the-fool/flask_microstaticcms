@@ -1,18 +1,20 @@
 function initProdTable() {
     var $table = $('#table');
     var $add = $('#add-tire');
-    var $stop = $('#remove-tire');
+    var $remove = $('#remove-tire');
     var selections = [];
 
     $table.bootstrapTable({
         cache: false,
         showExport: true,
+        showRefresh: true,
         exportTypes: ['json', 'xml', 'csv', 'txt'],
-        //height: 350,
-        id: 'task_id',
+        search: true,
+        locale: 'en-US',
+        id: 'id',
         sortName: 'date_begun',
         sortOrder: 'desc',
-        detailView: true,
+        toolbar: '#toolbar',
         url: '/api/products',
         columns: [
             {
@@ -62,12 +64,12 @@ function initProdTable() {
         function () {
             $add.prop('disabled',
                 $table.bootstrapTable('getSelections').length);
-            $stop.prop('disabled', !$table.bootstrapTable('getSelections').length);
+            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
             $table.data('selections', getIdSelections());
         });
 
-    $('#add-tire').click(function () {
-
+    $add.click(function () {
+        $('#add-tire-modal').modal('show');
     });
 
 
@@ -79,7 +81,7 @@ function initProdTable() {
 
     $table.on('load-success.bs.table', function () {
         $add.prop('disabled', false);
-        $stop.prop('disabled', true);
+        $remove.prop('disabled', true);
     });
 
     $table.on('reset-view.bs.table', function () {
