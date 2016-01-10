@@ -46,6 +46,7 @@ function initProdTable() {
                 title: 'Text',
                 field: 'description',
                 align: 'center',
+                formatter: textFormatter,
                 sortable: true
 	    }, {
                 title: 'Image',
@@ -60,6 +61,17 @@ function initProdTable() {
             }]
     });
 
+    function textFormatter(v) {
+        if (v.length > 35) {
+            v = v.slice(0,30) + " . . . ";
+        }
+        return v;
+    }
+    function getIdSelections() {
+        return $.map($table.bootstrapTable('getSelections'), function (row) {
+            return row['id'];
+        });
+    }
     $table.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
         function () {
             $add.prop('disabled',
@@ -67,12 +79,7 @@ function initProdTable() {
             $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
             $table.data('selections', getIdSelections());
         });
-
-    function getIdSelections() {
-        return $.map($table.bootstrapTable('getSelections'), function (row) {
-            return row['id'];
-        });
-    }
+   
 
     $table.on('load-success.bs.table', function () {
         $add.prop('disabled', false);
