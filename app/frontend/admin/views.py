@@ -15,11 +15,11 @@ def cpanel():
                    price = form.price.data,
                    size = form.size.data,
                    image = form.image.data,
-                   status = Tire.Status.available,
+                   status = Tire.Status.available.name,
                    description = form.description.data)
         sess.add(tire)
         sess.commit()
-        flash('Added {0}'.format(form.price.name))
+        flash('Added {0}'.format(form.name.data))
         return redirect(url_for('.cpanel'))
     return render_template('admin.html', form=form)
 
