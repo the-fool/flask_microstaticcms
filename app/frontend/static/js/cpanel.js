@@ -32,7 +32,13 @@ function initProdTable() {
                 title: 'Name',
                 field: 'name',
                 align: 'center',
-                sortable: true
+                sortable: true,
+                editable: {
+                    type: 'text',
+                    title: 'Name',
+                    url: '/api/products/update_name',
+                    name: 'name'
+                }
 	    }, {
                 title: 'Price',
                 field: 'price',
@@ -58,7 +64,17 @@ function initProdTable() {
                 title: 'Status',
                 field: 'status',
                 align: 'center',
-                sortable: true
+                sortable: true,
+                editable:  
+                {
+                    name: 'status',
+                    type: 'select',
+                    //emptytext: 'select status',
+                    //defaultValue: 'Select Status',
+                    source: '/api/products/statuses',
+                    title: 'Change Status',
+                    url: '/api/update_status',
+                }
             }]
     });
 
