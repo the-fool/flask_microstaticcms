@@ -1,6 +1,9 @@
+from enum import Enum
+
 from sqlalchemy import Column, Integer, String, Float, Text
 from ..database import Base
-
+    
+    
 class Tire(Base):
     __tablename__ = 'Tires'
     id = Column(Integer, primary_key=True)
@@ -22,3 +25,10 @@ class Tire(Base):
             'description'   : self.description
             }
         return json_tire
+    
+    class Status(Enum):
+        offshelf = 0
+        available = 1
+        earmarked = 2
+        sold = 3
+        cancelled = 4

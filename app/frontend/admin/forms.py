@@ -15,3 +15,4 @@ class NewTireForm(Form):
     size = StringField('Size')
     description = TextAreaField('Tire Description')
     image = FileField('Image File')
+    submit = SubmitField('Create New Tire')

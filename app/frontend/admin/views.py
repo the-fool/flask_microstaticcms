@@ -2,12 +2,25 @@ from flask import Blueprint, render_template, flash, redirect, url_for
 from flask.ext.login import login_required, login_user, logout_user, current_user
 from . import admin
 from .forms import LoginForm, NewTireForm
-from app.models import User
+from app.models import User, Tire
+from app.database import db_session as sess
 
-@admin.route('/')
+@admin.route('/', methods=['GET', 'POST'])
 @login_required
 def cpanel():
     form = NewTireForm()
+    if form.validate_on_submit():
+        print form.image.data
+        tire = Tire(name = form.name.data,
+                   price = form.price.data,
+                   size = form.size.data,
+                   image = form.image.data,
+                   status = Tire.Status.available,
+                   description = form.description.data)
+        sess.add(tire)
+        sess.commit()
+        flash('Added {0}'.format(form.price.name))
+        return redirect(url_for('.cpanel'))
     return render_template('admin.html', form=form)
 
 
@@ -23,6 +36,7 @@ def login():
         flash('Invalid username or password. Or both.')
     return render_template('login.html', form=form)
  
+    
 @admin.route('/logout')
 def logout():
     logout_user()
