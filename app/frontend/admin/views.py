@@ -25,7 +25,7 @@ def cpanel():
         flash('Added {0}'.format(form.name.data))
         return redirect(url_for('.cpanel'))
     elif img_form.validate_on_submit():
-        t = Tire.query.filter_by(id=form.pk.data).first()
+        t = Tire.query.filter_by(id=img_form.pk.data).first()
         t.image = save_image(form)
         sess.commit()
         flash('Updated image')
