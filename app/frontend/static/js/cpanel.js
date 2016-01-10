@@ -6,6 +6,7 @@ function initProdTable() {
 
     $table.bootstrapTable({
         cache: false,
+        classes: "table table-hover table-bordered",
         showExport: true,
         showRefresh: true,
         exportTypes: ['json', 'xml', 'csv', 'txt'],
@@ -47,10 +48,10 @@ function initProdTable() {
                 field: 'description',
                 align: 'center',
                 formatter: textFormatter,
-                sortable: true
 	    }, {
                 title: 'Image',
                 field: 'image',
+                formatter: imgIcon,
                 align: 'center',
 
             }, {
@@ -62,10 +63,17 @@ function initProdTable() {
     });
 
     function textFormatter(v) {
-        if (v.length > 35) {
-            v = v.slice(0,30) + " . . . ";
+        if (v.length > 45) {
+            v = v.slice(0,40) + " . . . ";
         }
         return v;
+    }
+    function imgIcon(v,r) {
+        if (v === undefined) {
+            return '-';
+        }
+        console.log(r);
+        return '<a href="#" data-id=' + r.id + '><i class="fa fa-picture-o"></i></a>'
     }
     function getIdSelections() {
         return $.map($table.bootstrapTable('getSelections'), function (row) {
