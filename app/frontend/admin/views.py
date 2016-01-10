@@ -19,7 +19,7 @@ def cpanel():
                    description = form.description.data)
         if form.image.data is not None:
             tire.image = gen_filename(form)
-            form.image.data.save('public/img/' + tire.image)
+            form.image.data.save('app/frontend/static/img/' + tire.image)
         sess.add(tire)
         sess.commit()
         flash('Added {0}'.format(form.name.data))

@@ -114,8 +114,7 @@ function initProdTable() {
         if (v === undefined) {
             return '-';
         }
-        console.log(r);
-        return '<a href="#" data-id=' + r.id + '><i class="fa fa-picture-o"></i></a>'
+        return '<a href="#" class="img-link" data-id=' + r.id + '><i class="fa fa-picture-o"></i></a>'
     }
 
     function getIdSelections() {
@@ -140,7 +139,24 @@ function initProdTable() {
     $table.on('reset-view.bs.table', function () {
 
     });
+    
+    $table.on('click', 'tr > td > a.img-link', function() {
+        showImageModal($(this).data('id'));
+    }); 
 
+}
+
+function showImageModal(id) {
+    console.log(id);
+    $('#img-modal').modal('show');
+    $.ajax({
+        url: '/api/products/',
+        data: {id: id},
+        success: function(d) {
+            $('#tire-img').attr('src', '/static/img/' + d.image);
+        },
+        
+    });
 }
 
 $(function () {

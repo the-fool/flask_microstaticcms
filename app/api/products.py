@@ -8,8 +8,12 @@ bp = Blueprint('products', __name__, url_prefix='/products')
 
 @bp.route('/')
 def products():
-    tires = [t.to_json() for t in Tire.query.all()]
-    return Response(json.dumps(tires), mimetype='application/json')
+    i = request.args.get('id','')
+    if i:
+        t = Tire.query.filter_by(id=i).first().to_json()
+    else:
+        t = [t.to_json() for t in Tire.query.all()]
+    return Response(json.dumps(t), mimetype='application/json')
 
 
 @bp.route('/statuses')
