@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask.ext.login import login_required, login_user, logout_user, current_user
 from werkzeug import secure_filename
 from . import admin
-from .forms import LoginForm, NewTireForm
+from .forms import LoginForm, NewTireForm, UpdateImageForm
 from app.models import User, Tire
 from app.database import db_session as sess
 
@@ -11,6 +11,7 @@ from app.database import db_session as sess
 @login_required
 def cpanel():
     form = NewTireForm()
+    img_form = UpdateImageForm()
     if form.validate_on_submit():
         tire = Tire(name = form.name.data,
                    price = form.price.data,
@@ -18,15 +19,20 @@ def cpanel():
                    status = Tire.Status.available.name,
                    description = form.description.data)
         if form.image.data is not None:
-            tire.image = gen_filename(form)
-            form.image.data.save('app/frontend/static/img/' + tire.image)
+            tire.image = save_image(form)
         sess.add(tire)
         sess.commit()
         flash('Added {0}'.format(form.name.data))
         return redirect(url_for('.cpanel'))
+    elif img_form.validate_on_submit():
+        t = Tire.query.filter_by(id=form.pk.data).first()
+        t.image = save_image(form)
+        sess.commit()
+        flash('Updated image')
+        return redirect(url_for('.cpanel'))
     elif request.method == 'POST':
         flash(form.errors)
-    return render_template('admin.html', form=form)
+    return render_template('admin.html', form=form, img_form=img_form)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -51,10 +57,12 @@ def logout():
 
 import hashlib
 import time
-def gen_filename(form):
+def save_image(form):
     fname = secure_filename(form.image.data.filename)
     ext = os.path.splitext(fname)[1]
     h = hashlib.sha1()
     h.update(str(time.time()))
-    return str(h.hexdigest()) + ext
+    fname = str(h.hexdigest()) + ext 
+    form.image.data.save('app/frontend/static/img/' + fname)
+    return fname
     

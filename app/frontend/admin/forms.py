@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import DecimalField, FileField, StringField, TextAreaField, PasswordField, SubmitField
+from wtforms import DecimalField, FileField, HiddenField, StringField, TextAreaField, PasswordField, SubmitField
 from wtforms.validators import Required, Length, Email
 
 from app.models import User
@@ -16,3 +16,8 @@ class NewTireForm(Form):
     description = TextAreaField('Tire Description')
     image = FileField('Image File')
     submit = SubmitField('Create New Tire')
+    
+class UpdateImageForm(Form):
+    image = FileField('Image File (.png plz)', validators=[Required()])
+    pk = HiddenField('pk')
+    submit = SubmitField('Update Image')

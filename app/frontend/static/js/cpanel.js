@@ -147,8 +147,8 @@ function initProdTable() {
 }
 
 function showImageModal(id) {
-    console.log(id);
     $('#img-modal').modal('show');
+    $('#img-modal .modal-body #pk').attr('value', id);
     $.ajax({
         url: '/api/products/',
         data: {id: id},

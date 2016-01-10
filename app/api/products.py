@@ -30,3 +30,4 @@ def update(col):
     setattr(t, col, v)
     sess.commit()
     return Response(status=200)
+
