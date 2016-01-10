@@ -46,6 +46,7 @@ function initProdTable() {
                 sortable: true,
                 editable: {
                     type: 'text',
+                    validate: priceValidator,
                     title: 'Price',
                     url: '/api/products/update/price',
                     name: 'price'
@@ -100,6 +101,13 @@ function initProdTable() {
             v = v.slice(0, 40) + " . . . ";
         }*/
         return v;
+    }
+    
+    function priceValidator(v) {
+        if (isNaN(parseFloat(v))) {
+            return "Enter a simple decimal"
+        }
+       // return {newValue: String(Math.round(parseFloat(v) * 100)/100)}
     }
 
     function imgIcon(v, r) {
