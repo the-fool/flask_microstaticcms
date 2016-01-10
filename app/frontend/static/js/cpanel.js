@@ -6,6 +6,7 @@ function initProdTable() {
 
     $table.bootstrapTable({
         cache: false,
+        rowStyle: styleRows,
         classes: "table table-hover table-bordered",
         showExport: true,
         showRefresh: true,
@@ -134,16 +135,24 @@ function initProdTable() {
     $table.on('load-success.bs.table', function () {
         $add.prop('disabled', false);
         $remove.prop('disabled', true);
+    
     });
 
     $table.on('reset-view.bs.table', function () {
-
+    
     });
     
     $table.on('click', 'tr > td > a.img-link', function() {
         showImageModal($(this).data('id'));
     }); 
 
+}
+
+function styleRows(r) {
+    if (r.status === 'sold')
+        return {classes: 'grey-row'};
+    else
+        return {classes: ''};
 }
 
 function showImageModal(id) {
