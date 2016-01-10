@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask.ext.login import login_required, login_user, logout_user, current_user
 from . import admin
 from .forms import LoginForm, NewTireForm
@@ -21,6 +21,8 @@ def cpanel():
         sess.commit()
         flash('Added {0}'.format(form.name.data))
         return redirect(url_for('.cpanel'))
+    elif request.method == 'POST':
+        flash(form.errors)
     return render_template('admin.html', form=form)
 
 

@@ -12,7 +12,7 @@ function initProdTable() {
         exportTypes: ['json', 'xml', 'csv', 'txt'],
         search: true,
         locale: 'en-US',
-        id: 'id',
+        idField: 'id',
         sortName: 'date_begun',
         sortOrder: 'desc',
         toolbar: '#toolbar',
@@ -36,7 +36,7 @@ function initProdTable() {
                 editable: {
                     type: 'text',
                     title: 'Name',
-                    url: '/api/products/update_name',
+                    url: '/api/products/update/name',
                     name: 'name'
                 }
 	    }, {
@@ -73,7 +73,7 @@ function initProdTable() {
                     //defaultValue: 'Select Status',
                     source: '/api/products/statuses',
                     title: 'Change Status',
-                    url: '/api/update_status',
+                    url: '/api/products/update/status',
                 }
             }]
     });

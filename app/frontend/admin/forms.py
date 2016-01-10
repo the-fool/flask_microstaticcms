@@ -11,7 +11,7 @@ class LoginForm(Form):
     
 class NewTireForm(Form):
     name = StringField('Name', validators=[Required()])
-    price = DecimalField('Price', validators=[Required()])
+    price = DecimalField('Price (no $ sign)', validators=[Required()])
     size = StringField('Size')
     description = TextAreaField('Tire Description')
     image = FileField('Image File')
