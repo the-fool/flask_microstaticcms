@@ -43,17 +43,35 @@ function initProdTable() {
                 title: 'Price',
                 field: 'price',
                 align: 'center',
-                sortable: true
+                sortable: true,
+                editable: {
+                    type: 'text',
+                    title: 'Price',
+                    url: '/api/products/update/price',
+                    name: 'price'
+                }
 	    }, {
                 title: 'Size',
                 field: 'size',
                 align: 'center',
-                sortable: true
-            }, {
+                sortable: true,
+                editable: {
+                    type: 'text',
+                    title: 'Size',
+                    url: '/api/products/update/size',
+                    name: 'size'
+                }
+        }, {
                 title: 'Text',
                 field: 'description',
-                align: 'center',
+                align: 'left',
                 formatter: textFormatter,
+                editable: {
+                    type: 'textarea',
+                    title: 'Description',
+                    url: '/api/products/update/description',
+                    name: 'description'
+                }
 	    }, {
                 title: 'Image',
                 field: 'image',
@@ -65,8 +83,7 @@ function initProdTable() {
                 field: 'status',
                 align: 'center',
                 sortable: true,
-                editable:  
-                {
+                editable: {
                     name: 'status',
                     type: 'select',
                     //emptytext: 'select status',
@@ -79,18 +96,20 @@ function initProdTable() {
     });
 
     function textFormatter(v) {
-        if (v.length > 45) {
-            v = v.slice(0,40) + " . . . ";
-        }
+        /*if (v.length > 45) {
+            v = v.slice(0, 40) + " . . . ";
+        }*/
         return v;
     }
-    function imgIcon(v,r) {
+
+    function imgIcon(v, r) {
         if (v === undefined) {
             return '-';
         }
         console.log(r);
         return '<a href="#" data-id=' + r.id + '><i class="fa fa-picture-o"></i></a>'
     }
+
     function getIdSelections() {
         return $.map($table.bootstrapTable('getSelections'), function (row) {
             return row['id'];
@@ -103,7 +122,7 @@ function initProdTable() {
             $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
             $table.data('selections', getIdSelections());
         });
-   
+
 
     $table.on('load-success.bs.table', function () {
         $add.prop('disabled', false);
