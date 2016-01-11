@@ -43,6 +43,13 @@ def list_routes():
     for line in sorted(output):
         print line
 
+@manager.command
+def add_user():
+    from app.settings import DEFAULT_USER
+    u = User(**DEFAULT_USER)
+    sess.add(u)
+    sess.commit()
+    
 if __name__=='__main__':
     manager.run()
 

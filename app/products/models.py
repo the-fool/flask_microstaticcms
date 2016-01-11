@@ -13,6 +13,7 @@ class Tire(Base):
     image = Column(String(128))
     status = Column(String(32))
     description = Column(Text)
+    quantity = Column(Integer)
 
     def to_json(self):
         json_tire = {
