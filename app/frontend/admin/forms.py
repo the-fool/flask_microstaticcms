@@ -5,7 +5,7 @@ from wtforms.validators import Required, Length, Email, ValidationError
 from app.models import User
 
 def non_negative(form, field):
-        if str(int(field.data)) == field.data and int(field.data) >= 0:
+        if str(int(field.data)) == str(field.data) and int(field.data) >= 0:
             return
         else:
             raise ValidationError('Quantity must be non-negative integer')

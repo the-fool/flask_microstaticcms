@@ -17,7 +17,8 @@ def cpanel():
                    price = form.price.data,
                    size = form.size.data,
                    status = Tire.Status.available.name,
-                   description = form.description.data)
+                   description = form.description.data,
+                   quantity = form.quantity.data)
         if form.image.data is not None:
             tire.image = save_image(form)
         sess.add(tire)
