@@ -1,5 +1,5 @@
 .splash {
-    background: url("../img/titlesplash.png") no-repeat center center;
+    background: url("/static/img/titlesplash.png") no-repeat center center;
     background-position: center top;
     background-size: 100%;
     background-color: #E3F2F7;
