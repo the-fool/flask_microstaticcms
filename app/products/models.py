@@ -29,8 +29,6 @@ class Tire(Base):
         return json_tire
     
     class Status(Enum):
-        offshelf = 0
-        available = 1
-        earmarked = 2
-        sold = 3
-        cancelled = 4
+        inactive = 0
+        active = 1
+        sold = 2

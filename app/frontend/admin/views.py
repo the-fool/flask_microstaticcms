@@ -16,7 +16,7 @@ def cpanel():
         tire = Tire(name = form.name.data,
                    price = form.price.data,
                    size = form.size.data,
-                   status = Tire.Status.available.name,
+                   status = Tire.Status.active.name,
                    description = form.description.data,
                    quantity = form.quantity.data)
         if form.image.data is not None:
