@@ -23,7 +23,8 @@ class Tire(Base):
             'size'          : self.size,
             'status'        : self.status,
             'image'         : self.image,
-            'description'   : self.description
+            'description'   : self.description,
+            'quantity'      : self.quantity
             }
         return json_tire
     

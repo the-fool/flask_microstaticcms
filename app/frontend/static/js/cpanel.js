@@ -14,7 +14,7 @@ function initProdTable() {
         search: true,
         locale: 'en-US',
         idField: 'id',
-        sortName: 'date_begun',
+        sortName: 'name',
         sortOrder: 'desc',
         toolbar: '#toolbar',
         url: '/api/products',
@@ -41,6 +41,16 @@ function initProdTable() {
                     name: 'name'
                 }
 	    }, {
+                title: 'Quantity Left',
+                field: 'quantity',
+                align: 'center',
+                editable: {
+                    type: 'text',
+                    title: 'Quantity Remaining',
+                    url: '/api/products/update/quantity',
+                    name: 'quantity'
+                }
+        }, {
                 title: 'Price',
                 field: 'price',
                 align: 'center',

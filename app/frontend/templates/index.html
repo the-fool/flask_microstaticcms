@@ -11,9 +11,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-{% endblock %} 
-
-{% block page_content %}
+{% endblock %} {% block page_content %}
 <!-- Header -->
 <header class="splash">
     <div class="container">
@@ -77,10 +75,9 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <p>Robert "Bob" Crismore has been in the tire business for a long time.  He's been buying and selling quality used tires since 1955.
-                    He knows a value when he sees it, and he knows where to find your special orders.</p>
+                <p>Robert "Bob" Crismore has been in the tire business for a long time. He's been buying and selling quality used tires since 1955. He knows a value when he sees it, and he knows where to find your special orders.</p>
                 <p>
-                    Can't find what you need?  Give us a call or e-mail and we'll start looking for you.  <strong>406-261-1262</strong>
+                    Can't find what you need? Give us a call or e-mail and we'll start looking for you. <strong>406-261-1262</strong>
                 </p>
             </div>
 
@@ -183,9 +180,7 @@
     </a>
 </div>
 
-{% endblock %}
-{% block scripts %}
-{{ super() }}
+{% endblock %} {% block scripts %} {{ super() }}
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script src="{{ url_for('static', filename='js/lib/classie.js') }} "></script>
 <script src="{{ url_for('static', filename='js/lib/cbpAnimatedHeader.min.js') }}"></script>
@@ -195,4 +190,3 @@
 
 <script src="{{ url_for('static', filename='js/freelancer.js') }}"></script>
 {% endblock %}
-
