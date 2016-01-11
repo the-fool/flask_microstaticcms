@@ -163,3 +163,14 @@
 </div>
 
 {% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/lib/classie.js') }} "></script>
+<script src="{{ url_for('static', filename='js/lib/cbpAnimatedHeader.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/lib/jqBootstrapValidation.js') }} "></script>
+<script src="{{ url_for('static', filename='js/lib/contact_me.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/freelancer.js') }}"></script>
+{% endblock %}
+
