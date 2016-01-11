@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block head%} {{ super() }}
 <link href="{{ url_for('static', filename='css/freelancer.css') }}" rel="stylesheet">
 <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
@@ -54,7 +54,7 @@
                         <i class="fa fa-search-plus fa-3x"></i>
                     </div>
                 </div>
-                <img src="img/tirethumbs/{{t.image}}" class="img-responsive" alt="">
+                <img src="{{url_for('static', filename='img/' + t.image) }}" class="img-responsive" alt="">
             </a>
 
             <div class="itemdesc">
@@ -166,7 +166,7 @@
 {% block scripts %}
 {{ super() }}
 <script src="{{ url_for('static', filename='js/lib/classie.js') }} "></script>
-<script src="{{ url_for('static', filename='js/lib/cbpAnimatedHeader.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lib/cbpAnimatedHeader.js.min') }}"></script>
 
 <script src="{{ url_for('static', filename='js/lib/jqBootstrapValidation.js') }} "></script>
 <script src="{{ url_for('static', filename='js/lib/contact_me.js') }}"></script>
