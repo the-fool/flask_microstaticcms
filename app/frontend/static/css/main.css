@@ -1,0 +1,76 @@
+.splash {
+    background: url("../img/titlesplash.png") no-repeat center center;
+    background-position: center top;
+    background-size: 100%;
+    background-color: #E3F2F7;
+}
+
+@media(min-width: 470px){
+    .splash {
+        background-size: cover;
+         padding-top: 19%;
+    }
+}
+
+@media(min-width: 370px) {
+    .splash {
+        padding-top: 10%;
+    }
+}
+h2 {
+    font-size: 20px;
+}
+
+
+@media(min-width: 440px) {
+    h2 {
+        font-size: 24px;
+    }
+}
+@media(min-width: 550px) {
+    h2 {
+        font-size: 32px;
+    }
+}
+@media(min-width: 800px) {
+    h2 {
+        font-size: 40px;
+    }
+}
+.quickbtn {
+
+	background: transparent;
+	color: #F2F2F2;
+	-webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-ms-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-o-transition: background .2s ease-in-out, border .2s ease-in-out;
+	transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+body {
+    font-family: 'Georgia', serif;
+}
+.inventory {
+    background: #e3f2f7;
+    padding: 2em;
+}
+#inventory {
+    padding-bottom: 1em;
+}
+.itemdesc {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.profile {
+    max-height: 24em;
+    margin: auto;
+}
+
+#about-title {
+    padding: 1em;
+}
+

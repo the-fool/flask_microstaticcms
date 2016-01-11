@@ -8,7 +8,7 @@ from ..factory import lm as login_manager
 from ..database import Base
 
 class User(UserMixin, Base):
-    __tablename__ = 'users'
+    __tablename__ = 'Users'
     id = Column(Integer, primary_key=True)
     email = Column(String(64), unique=True, index=True)
     username = Column(String(64), unique=True, index=True)
