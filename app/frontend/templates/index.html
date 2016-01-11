@@ -45,6 +45,9 @@
             </div>
         </div>
         {% for t in tires %}
+        {% if (loop.index - 1) % 3 == 0 %}
+        <div class="row">
+        {% endif %}
         <div class="col-sm-4 portfolio-item">
             <a href="#tireModal" class="portfolio-link" data-toggle="modal">
                 <div class="caption">
@@ -62,6 +65,9 @@
                 <p>{{t.description}}</p>
             </div>
         </div>
+        {% if loop.index % 3 == 0 %}
+        </div>
+        {% endif %}
         {% endfor %}
     </div>
 </section>
