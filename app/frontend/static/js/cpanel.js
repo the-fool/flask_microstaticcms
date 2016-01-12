@@ -7,14 +7,14 @@ function initProdTable() {
     $table.bootstrapTable({
         cache: false,
         rowStyle: styleRows,
-        classes: "table table-hover table-bordered",
+        classes: "table table-bordered",
         showExport: true,
         showRefresh: true,
         exportTypes: ['json', 'xml', 'csv', 'txt'],
         search: true,
         locale: 'en-US',
         idField: 'id',
-        sortName: 'name',
+        sortName: 'status',
         sortOrder: 'desc',
         toolbar: '#toolbar',
         url: '/api/products',
@@ -77,7 +77,6 @@ function initProdTable() {
                 title: 'Text',
                 field: 'description',
                 align: 'left',
-                formatter: textFormatter,
                 editable: {
                     type: 'textarea',
                     title: 'Description',
@@ -95,6 +94,7 @@ function initProdTable() {
                 field: 'status',
                 align: 'center',
                 sortable: true,
+                sorter: statusSorter,
                 editable: {
                     name: 'status',
                     type: 'select',
@@ -107,12 +107,23 @@ function initProdTable() {
             }]
     });
 
-    function textFormatter(v) {
-        /*if (v.length > 45) {
-            v = v.slice(0, 40) + " . . . ";
-        }*/
-        return v;
+    function statusSorter(a,b) {
+       if (transStatus(a) > transStatus(b)) return 1;
+       else if (transStatus(a) < transStatus(b)) return -1;
+       else return 0;
     }
+    function transStatus(x) {
+        switch (x) {
+            case 'sold':
+                return 0;
+            case 'active':
+                return 1;
+            case 'inactive':
+                return -1;
+        }
+    }
+                
+    
     
     function priceValidator(v) {
         if (isNaN(parseFloat(v))) {
@@ -160,7 +171,9 @@ function initProdTable() {
 
 function styleRows(r) {
     if (r.status === 'sold')
-        return {classes: 'grey-row'};
+        return {classes: 'sold'};
+    else if (r.status == 'inactive')
+        return {classes: 'inactive'};
     else
         return {classes: ''};
 }

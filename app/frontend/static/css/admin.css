@@ -1,3 +1,7 @@
-.grey-row, .grey-row:hover {
-    background-color: dimgray;
+tr.inactive {
+    background-color: lightgray;
+}
+
+tr.sold {
+    background-color: #F5BEBE;
 }
