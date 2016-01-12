@@ -59,7 +59,10 @@
                 </a>
 
                 <div class="itemdesc">
-                    <h4 class="pull-right t-price">{{t.price}}</h4>
+                    <h4 class="pull-right t-price {% if t.status == "sold" -%}
+                                sold
+                                {%- endif -%}
+                                ">{{t.price}}</h4>
                     <h4><a href="#tire-modal" class="modal-anchor" data-toggle="modal" data-id="{{t.id}}">{{t.size}}</a>
                     </h4>
                     <p>{{t.description}}</p>
