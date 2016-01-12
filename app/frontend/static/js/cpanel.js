@@ -107,29 +107,29 @@ function initProdTable() {
             }]
     });
 
-    function statusSorter(a,b) {
-       if (transStatus(a) > transStatus(b)) return 1;
-       else if (transStatus(a) < transStatus(b)) return -1;
-       else return 0;
+    function statusSorter(a, b) {
+        if (transStatus(a) > transStatus(b)) return 1;
+        else if (transStatus(a) < transStatus(b)) return -1;
+        else return 0;
     }
+
     function transStatus(x) {
         switch (x) {
-            case 'sold':
-                return 0;
-            case 'active':
-                return 1;
-            case 'inactive':
-                return -1;
+        case 'sold':
+            return 0;
+        case 'active':
+            return 1;
+        case 'inactive':
+            return -1;
         }
     }
-                
-    
-    
+
+
     function priceValidator(v) {
         if (isNaN(parseFloat(v))) {
             return "Enter a simple decimal"
         }
-       // return {newValue: String(Math.round(parseFloat(v) * 100)/100)}
+        // return {newValue: String(Math.round(parseFloat(v) * 100)/100)}
     }
 
     function imgIcon(v, r) {
@@ -144,38 +144,65 @@ function initProdTable() {
             return row['id'];
         });
     }
-    $table.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
-        function () {
-            $add.prop('disabled',
-                $table.bootstrapTable('getSelections').length);
-            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
-            $table.data('selections', getIdSelections());
+
+    $remove.click(function () {
+        $('#conf-modal').modal('show');
+    });
+    $('#delete-tires').click(function () {
+            var ids = getIdSelections();
+            console.log(ids);
+            $.ajax({
+                    url: '/api/products/delete',
+                    data: JSON.stringify({
+                        ids: ids
+                    }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    method: 'POST',
+                }
+            ).done(function () {
+            $table.bootstrapTable('refresh');
         });
-
-
-    $table.on('load-success.bs.table', function () {
-        $add.prop('disabled', false);
-        $remove.prop('disabled', true);
-    
     });
 
-    $table.on('reset-view.bs.table', function () {
-    
+$table.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
+    function () {
+        $add.prop('disabled',
+            $table.bootstrapTable('getSelections').length);
+        $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+        $table.data('selections', getIdSelections());
     });
-    
-    $table.on('click', 'tr > td > a.img-link', function() {
-        showImageModal($(this).data('id'));
-    }); 
+
+
+$table.on('load-success.bs.table', function () {
+    $add.prop('disabled', false);
+    $remove.prop('disabled', true);
+
+});
+
+$table.on('reset-view.bs.table', function () {
+
+});
+
+$table.on('click', 'tr > td > a.img-link', function () {
+    showImageModal($(this).data('id'));
+});
 
 }
 
 function styleRows(r) {
     if (r.status === 'sold')
-        return {classes: 'sold'};
+        return {
+            classes: 'sold'
+        };
     else if (r.status == 'inactive')
-        return {classes: 'inactive'};
+        return {
+            classes: 'inactive'
+        };
     else
-        return {classes: ''};
+        return {
+            classes: ''
+        };
 }
 
 function showImageModal(id) {
@@ -183,11 +210,13 @@ function showImageModal(id) {
     $('#img-modal .modal-body #pk').attr('value', id);
     $.ajax({
         url: '/api/products/',
-        data: {id: id},
-        success: function(d) {
+        data: {
+            id: id
+        },
+        success: function (d) {
             $('#tire-img').attr('src', '/static/img/' + d.image);
         },
-        
+
     });
 }
 

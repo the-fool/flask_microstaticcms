@@ -24,6 +24,7 @@ def statuses():
     return Response(json.dumps(l), mimetype='application/json')
 
 @bp.route('/update/<col>', methods=['POST'])
+@login_required
 def update(col):
     t = Tire.query.filter_by(id = int(request.form['pk'])).first()
     v = request.form['value']
@@ -31,3 +32,9 @@ def update(col):
     sess.commit()
     return Response(status=200)
 
+@bp.route('/delete', methods=['POST'])
+@login_required
+def delete():
+    data = request.get_json()
+    print data
+    return Response(status=200)
