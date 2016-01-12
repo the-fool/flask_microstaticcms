@@ -2,6 +2,7 @@ from flask import Blueprint, request, Response
 from flask.ext.mail import Message
 
 from app.factory import mail
+from app.settings import DEFAULT_USER as admin
 
 bp = Blueprint('mail', __name__, url_prefix='/mail')
 
@@ -23,7 +24,7 @@ def contact_me():
     msg = Message(subject=subject, 
                   body=body,
                   sender="bob@montanatireandwheel.com", 
-                  recipients=['sketchbang@gmail.com'])
+                  recipients=[admin['email']])
     try:
         mail.send(msg)
     except:

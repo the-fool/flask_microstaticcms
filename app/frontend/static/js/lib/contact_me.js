@@ -20,6 +20,7 @@ $(function() {
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
+            $('#patience').text('One moment, please...');
             $.ajax({
                 url: "/api/mail/contact_me",
                 type: "POST",
@@ -31,6 +32,7 @@ $(function() {
                 },
                 cache: false,
                 success: function() {
+                    $('#patience').text('');
                     // Enable button & show success message
                     $("#btnSubmit").attr("disabled", false);
                     $('#success').html("<div class='alert alert-success'>");
@@ -45,6 +47,7 @@ $(function() {
                     $('#contactForm').trigger("reset");
                 },
                 error: function() {
+                     $('#patience').text('');
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
