@@ -5,8 +5,8 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from werkzeug.wsgi import DispatcherMiddleware
 from werkzeug.serving import run_simple
 
-from app.database import db_session as sess, Base
 from app import api
+from app.database import db_session as sess, Base
 from app.models import *
 
 #app = DispatcherMiddleware(frontend.create_app(), {'/api': api.create_app()})
@@ -49,6 +49,16 @@ def add_user():
     u = User(**DEFAULT_USER)
     sess.add(u)
     sess.commit()
+    
+@manager.command
+def send_mail():
+    from flask.ext.mail import Message
+    from app.factory import mail
+    
+    msg = Message("Testing", sender="bob@montanatireandwheel.com", recipients=["sketchbang@gmail.com"])
+    msg.body = "testing"
+    mail.send(msg)
+    
     
 if __name__=='__main__':
     manager.run()

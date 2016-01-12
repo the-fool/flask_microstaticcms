@@ -21,8 +21,6 @@ $('a.modal-anchor').click(function () {
 $(function() {
     $('div.portfolio-item div.itemdesc h4.t-price').each(function() {
         $(this).text(function(i,t) {
-            console.log(i);
-            console.log(t);
            return '$' + parseFloat(t).toFixed(2); 
         });
     });

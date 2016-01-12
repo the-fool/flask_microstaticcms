@@ -21,7 +21,7 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "/static/mail/contact_me.php",
+                url: "/api/mail/contact_me",
                 type: "POST",
                 data: {
                     name: name,

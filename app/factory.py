@@ -2,11 +2,13 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.login import LoginManager
+from flask.ext.mail import Mail
 
 from .helpers import register_blueprints
 
 db = SQLAlchemy()
 bs = Bootstrap()
+mail = Mail()
 lm = LoginManager()
 lm.login_view = 'admin.login'
 
@@ -22,6 +24,7 @@ def create_app(package_name, package_path, settings_override=None,
     db.init_app(app)
     bs.init_app(app)
     lm.init_app(app)
+    mail.init_app(app)
     
     register_blueprints(app, package_name, package_path)
     
