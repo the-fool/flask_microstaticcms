@@ -35,6 +35,13 @@ def update(col):
 @bp.route('/delete', methods=['POST'])
 @login_required
 def delete():
-    data = request.get_json()
-    print data
+    try:
+        data = request.get_json()['ids']
+        ts = Tire.query.filter(Tire.id.in_(data))
+        for t in ts:
+            sess.delete(t)
+        sess.commit()
+    except:
+        return Response(status=503)
+    
     return Response(status=200)

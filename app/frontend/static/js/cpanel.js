@@ -149,44 +149,43 @@ function initProdTable() {
         $('#conf-modal').modal('show');
     });
     $('#delete-tires').click(function () {
-            var ids = getIdSelections();
-            console.log(ids);
-            $.ajax({
-                    url: '/api/products/delete',
-                    data: JSON.stringify({
-                        ids: ids
-                    }),
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    method: 'POST',
-                }
-            ).done(function () {
+        var ids = getIdSelections();
+        console.log(ids);
+        $.ajax({
+            url: '/api/products/delete',
+            data: JSON.stringify({
+                ids: ids
+            }),
+            //dataType: 'json',
+            contentType: 'application/json',
+            method: 'POST',
+        }).done(function () {
             $table.bootstrapTable('refresh');
         });
     });
 
-$table.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
-    function () {
-        $add.prop('disabled',
-            $table.bootstrapTable('getSelections').length);
-        $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
-        $table.data('selections', getIdSelections());
+    $table.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
+        function () {
+            $add.prop('disabled',
+                $table.bootstrapTable('getSelections').length);
+            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+            $table.data('selections', getIdSelections());
+        });
+
+
+    $table.on('load-success.bs.table', function () {
+        $add.prop('disabled', false);
+        $remove.prop('disabled', true);
+
     });
 
+    $table.on('reset-view.bs.table', function () {
 
-$table.on('load-success.bs.table', function () {
-    $add.prop('disabled', false);
-    $remove.prop('disabled', true);
+    });
 
-});
-
-$table.on('reset-view.bs.table', function () {
-
-});
-
-$table.on('click', 'tr > td > a.img-link', function () {
-    showImageModal($(this).data('id'));
-});
+    $table.on('click', 'tr > td > a.img-link', function () {
+        showImageModal($(this).data('id'));
+    });
 
 }
 
