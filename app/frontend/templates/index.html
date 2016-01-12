@@ -44,7 +44,8 @@
                 <h2 id="inventory">Our Current Inventory</h2>
             </div>
         </div>
-        {% for t in tires %} {% if (loop.index - 1) % 3 == 0 %}
+        {% for t in tires %} 
+        {% if (loop.index - 1) % 3 == 0 %}
         <div class="row">
             {% endif %}
             <div class="col-sm-4 portfolio-item">

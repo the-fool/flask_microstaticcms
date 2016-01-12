@@ -10,7 +10,6 @@ def contact_me():
     d = {}
     for x in ['name','email','phone','message','email']:
         if not request.form[x]:
-            print "missing {} field".format(x)
             return Response(400)
         d[x] = request.form[x]
         
